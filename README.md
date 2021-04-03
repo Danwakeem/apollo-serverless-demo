@@ -1,5 +1,7 @@
 # Status
-❌ - Not Working
+✅ - Working
+
+> But it doesn't seem to report all requests 🤔
 
 # Serverless GQL Demo
 This is a super bare bones AWS Lambda graphql server. I put this together to demo some issues I was having with apollo's `ApolloServerPluginUsageReporting` plugin not working an a lambda environment.
