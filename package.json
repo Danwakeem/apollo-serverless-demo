@@ -1,0 +1,25 @@
+{
+  "name": "serverless-gql",
+  "version": "0.0.1",
+  "description": "Serverless Demo App :)",
+  "main": "index.js",
+  "repository": "https://github.com/Danwakeem/apollo-serverless-demo",
+  "author": "Danwakeem",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "sls offline --noPrependStageInUrl"
+  },
+  "devDependencies": {
+    "serverless": "^2.33.0",
+    "serverless-dotenv-plugin": "^3.9.0",
+    "serverless-offline": "^6.9.0"
+  },
+  "dependencies": {
+    "apollo": "^2.32.5",
+    "apollo-server": "^2.22.2",
+    "apollo-server-lambda": "^2.22.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.5.0"
+  }
+}

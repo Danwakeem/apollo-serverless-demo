@@ -1,0 +1,53 @@
+service: serverless-gql
+useDotenv: true
+provider:
+  name: aws
+  runtime: nodejs14.x
+  versionFunctions: false
+  tracing:
+    apiGateway: true
+    lambda: true
+  apiGateway:
+    shouldStartNameWithService: true
+    apiKeys:
+      - ${self:service}-${opt:stage}-internal
+  environment:
+    NODE_ENV: production
+    STAGE: ${opt:stage}
+    LOG_LEVEL: ${self:custom.logLevel.${opt:stage}, self:custom.logLevel.default}
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+custom:
+  dotenv:
+    required:
+      env:
+        - APOLLO_ENGINE_API_KEY
+
+package:
+  exclude:
+    - .buildkite/**
+    - coverage/**
+    - src/**/*.test.js
+    - src/**/*.snap
+    - '.*'
+    - '*.sh'
+    - package.json
+    - yarn.lock
+    - README.md
+    - .env
+
+functions:
+  graphql:
+    handler: src/index.handler
+    memorySize: 256
+    timeout: 20
+    events:
+      - http:
+          path: graphql
+          method: post
+          private: true
+    tags:
+      FunctionType: graphql_api
