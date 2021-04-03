@@ -1,6 +1,8 @@
 # Status
 ✅ - Working
 
+> Seems to not capture every request though 🤔 I send about 10 and only see 5 in the dashboard 
+
 # Serverless GQL Demo
 This is a super bare bones AWS Lambda graphql server. I put this together to demo some issues I was having with apollo's `ApolloServerPluginUsageReporting` plugin not working an a lambda environment.
 
