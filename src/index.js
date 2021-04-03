@@ -7,12 +7,14 @@ const { APOLLO_ENGINE_API_KEY: key, STAGE: graphVariant } = process.env;
 
 const server = new ApolloServer({
   schema: buildFederatedSchema([healthCheckSchema]),
-  engine: {
-    apiKey: key,
-    schemaTag: graphVariant,
-    privateHeaders: ['x-api-key'],
-    sendReportsImmediately: true,
-  },
+  apollo: { key, graphVariant },
+  plugins: [
+    ApolloServerPluginUsageReporting({
+      sendReportsImmediately: true,
+      sendHeaders: { exceptNames: ['x-api-key'] },
+      sendVariableValues: { all: true },
+    }),
+  ],
   introspection: true,
 });
 
